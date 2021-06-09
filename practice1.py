@@ -133,4 +133,46 @@ malte_height = [22,25,19,30,21,24,28,18]
 
 dachhund = zip(d_length, d_height)
 d_l = list(dachhund)
-print(d_l)
+X1 = [list(i) for i in d_l]
+y1 = [0] * len(X1)
+
+s = zip(samo_length, samo_height)
+print(s)
+s_l = list(s)
+X2 = [list(i) for i in s_l]
+y2 = [1] * len(X2)
+
+m = zip(malte_length, malte_height)
+m_l = list(m)
+X3 = [list(i) for i in m_l]
+y3 = [2] * len(X3)
+
+#전체 문제집
+dogs = X1 + X2 + X3 # 수행평가때 비워질 부분
+labels = y1 + y2 + y3   # 수행평가때 비워질 부분
+
+print('neighbors의 개수 -> ', 5)
+knn = KNeighborsClassifier(n_neighbors=5)# 수행평가때 비워질 부분
+knn.fit(dogs, labels)# 수행평가때 비워질 부분
+
+new_data = [[45,34],[70,59],[49,30],[80,27]]
+dog_classes = {0:'Dachshund', 1:'Samoyed', 2:'maltese'}
+
+result = knn.predict(new_data)
+print(' 길이 45, 높이 34: {}'.format(dog_classes[result[0]]))
+print(' 길이 70, 높이 59: {}'.format(dog_classes[result[1]]))
+print(' 길이 49, 높이 30: {}'.format(dog_classes[result[2]]))
+print(' 길이 80, 높이 27: {}'.format(dog_classes[result[3]]))
+
+#시각화
+import matplotlib
+import matplotlib.font_manager as fm
+fm.get_fontconfig_fonts()
+
+font_location = 'C:/Windows/Fonts/HMFMPYUN.TTF'
+font_name = fm.FontProperties(fname=font_location).get_name()
+matplotlib.rc('font',family=font_name)
+
+x = [45,70,49,60]
+y = [34,59,30,56]
+
