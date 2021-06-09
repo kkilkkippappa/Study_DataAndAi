@@ -164,7 +164,6 @@ print(' 길이 70, 높이 59: {}'.format(dog_classes[result[1]]))
 print(' 길이 49, 높이 30: {}'.format(dog_classes[result[2]]))
 print(' 길이 80, 높이 27: {}'.format(dog_classes[result[3]]))
 
-#시각화
 import matplotlib
 import matplotlib.font_manager as fm
 fm.get_fontconfig_fonts()
@@ -176,3 +175,17 @@ matplotlib.rc('font',family=font_name)
 x = [45,70,49,60]
 y = [34,59,30,56]
 
+data = ['길이 45, 높이 34', '길이 78, 높이 59', '길이 49, 높이 39', '길이 60, 높이 56']
+plt.scatter(d_length,d_height, c='red', label='Dachshund')
+plt.scatter(samo_length,samo_height, c='blue',marker='^', label='Samoyed')
+plt.scatter(malte_length,malte_height, c='yellowgreen', marker='s', label='Maltese')
+plt.scatter(x,y,c='orange',label='new Data')
+
+for i in range(4):
+    plt.text(x[i], y[i], data[i], color='green')
+plt.xlabel('Length')
+plt.ylabel('Height')
+plt.title('Dog size')
+plt.legend(loc='upper left')
+
+plt.show()
